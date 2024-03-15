@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdjhg47y7alce"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fbnqp"]
+
+[node name="hurt_box" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_fbnqp")
+debug_color = Color(0.745098, 0.0431373, 0.388235, 0.419608)

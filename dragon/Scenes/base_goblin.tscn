@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://chgj6eb6pnpbj"]
+
+[ext_resource type="Texture2D" uid="uid://b057ob56tnni6" path="res://Assets/goblin_base.png" id="1_76ci8"]
+[ext_resource type="Script" path="res://base_goblin.gd" id="1_eedlp"]
+[ext_resource type="PackedScene" uid="uid://bdjhg47y7alce" path="res://Scenes/hurt_box.tscn" id="3_7hgj6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ye4ld"]
+
+[node name="base_goblin" type="Area2D" groups=["goblin"]]
+script = ExtResource("1_eedlp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_ye4ld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_76ci8")
+hframes = 3
+
+[node name="hurt_box" parent="." instance=ExtResource("3_7hgj6")]

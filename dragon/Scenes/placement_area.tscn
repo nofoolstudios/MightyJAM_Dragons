@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyi7bkw1l8wpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6j0s"]
+
+[node name="placement_area" type="Area2D" groups=["valid_placement_zone"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y6j0s")
+debug_color = Color(0.741176, 0.466667, 0, 0.419608)

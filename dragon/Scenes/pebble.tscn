@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b11gvsurb4a2n"]
+
+[ext_resource type="PackedScene" uid="uid://cmuseg3jxjf0v" path="res://Scenes/fire_ball.tscn" id="1_bvp2e"]
+[ext_resource type="Texture2D" uid="uid://b0rottn71osbt" path="res://Assets/pebble.png" id="2_q2jk8"]
+
+[node name="pebble" instance=ExtResource("1_bvp2e")]
+collision_mask = 16
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_q2jk8")

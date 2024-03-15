@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqrh2ssy5f1gk"]
+
+[ext_resource type="Texture2D" uid="uid://0esj0mqibjfi" path="res://Assets/nest.png" id="1_65q1a"]
+[ext_resource type="Script" path="res://nest.gd" id="1_s0pp6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cma4f"]
+size = Vector2(32.3679, 14.1677)
+
+[node name="Nest" type="Area2D" groups=["nest"]]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_s0pp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_65q1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.999999, 13.5)
+scale = Vector2(1.54474, -1.48225)
+shape = SubResource("RectangleShape2D_cma4f")

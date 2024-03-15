@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvgofox8cwn4s"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_4hi6q"]
+[ext_resource type="PackedScene" uid="uid://djbvlu58w4t0f" path="res://Scenes/floor.tscn" id="1_ikk1n"]
+[ext_resource type="PackedScene" uid="uid://dqrh2ssy5f1gk" path="res://Scenes/nest.tscn" id="2_iyfi2"]
+[ext_resource type="PackedScene" uid="uid://cyi7bkw1l8wpf" path="res://Scenes/placement_area.tscn" id="3_dqfu7"]
+[ext_resource type="PackedScene" uid="uid://dsd0iuyjqly4x" path="res://Scenes/cart.tscn" id="4_fim31"]
+[ext_resource type="PackedScene" uid="uid://cfw4os6466jte" path="res://Scenes/basic_ui.tscn" id="5_m7vev"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_4hi6q")
+
+[node name="floor" parent="." instance=ExtResource("1_ikk1n")]
+position = Vector2(318, 180)
+
+[node name="placement_area" parent="." instance=ExtResource("3_dqfu7")]
+position = Vector2(328, 261)
+scale = Vector2(25.3988, 0.298244)
+
+[node name="ui" type="Node2D" parent="."]
+
+[node name="Control" parent="ui" instance=ExtResource("5_m7vev")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = 48.0
+offset_top = 365.0
+offset_right = 48.0
+offset_bottom = 365.0
+grow_vertical = 0
+
+[node name="Nest" parent="." instance=ExtResource("2_iyfi2")]
+position = Vector2(609, 234)
+
+[node name="Cart" parent="." instance=ExtResource("4_fim31")]
+position = Vector2(40, 240)
+
+[node name="whelp_spawn_points" type="Node2D" parent="."]
+
+[node name="sp1" type="Marker2D" parent="whelp_spawn_points"]
+position = Vector2(-170, 146)
+
+[node name="sp2" type="Marker2D" parent="whelp_spawn_points"]
+position = Vector2(764, 155)
+
+[node name="sp3" type="Marker2D" parent="whelp_spawn_points"]
+position = Vector2(764, -170)
+
+[node name="sp4" type="Marker2D" parent="whelp_spawn_points"]
+position = Vector2(-154, -170)
+
+[node name="sp5" type="Marker2D" parent="whelp_spawn_points"]
+position = Vector2(335, -167)
+
+[node name="goblin_spawn_points" type="Node2D" parent="."]
+
+[node name="sp1" type="Marker2D" parent="goblin_spawn_points"]
+position = Vector2(-24, 244)
+
+[node name="sp2" type="Marker2D" parent="goblin_spawn_points"]
+position = Vector2(99, 244)
+
+[node name="goblin_protectors" type="Node2D" parent="."]
+
+[node name="goblin_collectors" type="Node2D" parent="."]
