@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://ig555l5kkr6b"]
+
+[ext_resource type="Script" path="res://whelp.gd" id="1_i8xvt"]
+[ext_resource type="PackedScene" uid="uid://bdjhg47y7alce" path="res://Scenes/hurt_box.tscn" id="2_16bbr"]
+[ext_resource type="Texture2D" uid="uid://3tamgxbj11yj" path="res://Assets/missing_textire_whelp.png" id="2_tcyho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pq8i"]
+size = Vector2(20, 50)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7iqdj"]
+height = 44.0
+
+[sub_resource type="Animation" id="Animation_pp4ow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7vt8t"]
+resource_name = "fly"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v02aj"]
+_data = {
+"RESET": SubResource("Animation_pp4ow"),
+"fly": SubResource("Animation_7vt8t")
+}
+
+[node name="whelp" type="Area2D" groups=["whelp"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_i8xvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -7.23997e-06)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_8pq8i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tcyho")
+hframes = 2
+
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(25, -3)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Vision" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision"]
+polygon = PackedVector2Array(27, -2, 47, 78, 73, 79, 76, 25, 73, -14, 58, -30, 39, -20)
+
+[node name="hurt_box" parent="." instance=ExtResource("2_16bbr")]
+position = Vector2(6, 0)
+rotation = 1.5708
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="hurt_box" index="0"]
+shape = SubResource("CapsuleShape2D_7iqdj")
+
+[node name="reload_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="spawn_timer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+autostart = true
+
+[node name="relocation_timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v02aj")
+}
+autoplay = "fly"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(2.5, 0.55)
+
+[editable path="hurt_box"]

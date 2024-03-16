@@ -1,0 +1,527 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsu6au3d5k5nl"]
+
+[ext_resource type="Texture2D" uid="uid://b0vv1xpo4elgp" path="res://Assets/main_menu_background.png" id="1_kqsmg"]
+[ext_resource type="Script" path="res://Scenes/Menu_Credits.gd" id="2_ds25v"]
+[ext_resource type="PackedScene" uid="uid://bv65unlrnfjw2" path="res://Scenes/main_screen_spawner.tscn" id="2_vi576"]
+[ext_resource type="Texture2D" uid="uid://diq4otv27kgne" path="res://Assets/ui_panel.png" id="2_wujna"]
+[ext_resource type="LabelSettings" uid="uid://c2tcbao51vfdi" path="res://Assets/fonts/main_menu_titles.tres" id="3_2tmv8"]
+[ext_resource type="Script" path="res://Scenes/Menu_Home.gd" id="4_dysux"]
+[ext_resource type="Texture2D" uid="uid://dj5gd3e00rk7b" path="res://Scenes/button_basic.png" id="4_rjpyo"]
+[ext_resource type="LabelSettings" uid="uid://cslmrudxnxwxm" path="res://Assets/fonts/label_theme.tres" id="5_1qkdh"]
+[ext_resource type="Script" path="res://Scenes/Menu_Settings.gd" id="7_c7iyn"]
+[ext_resource type="FontFile" uid="uid://buybdhyeluu7y" path="res://Assets/fonts/VisualFantasyDEMO-Regular.otf" id="8_uues2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s7ecl"]
+font = ExtResource("8_uues2")
+font_size = 24
+shadow_size = 3
+shadow_color = Color(0.305882, 0.0941176, 0.486275, 0.627451)
+
+[node name="main_menu" type="Node2D"]
+process_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_kqsmg")
+
+[node name="dragons" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 318.0
+offset_top = 179.0
+offset_right = 318.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu_Credits" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -112.5
+offset_right = 189.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ds25v")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Menu_Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wujna")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu_Credits/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu_Credits/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="title_label" type="Label" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CREDITS"
+label_settings = ExtResource("3_2tmv8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="crefits_label" type="Label" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "All credits and a list of used assets 
+for this project to be found in the file directory
+in the \"credits\" folder
+
+directory path is -  res://credits/"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="main_menu_button" type="TextureButton" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="main_menu_button_label" type="Label" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer/main_menu_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN   MENU"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit_game_button" type="TextureButton" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="exit_button_label" type="Label" parent="Control/Menu_Credits/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT    GAME"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_How_To" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -112.5
+offset_right = 189.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_c7iyn")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Menu_How_To"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wujna")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu_How_To/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu_How_To/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="how_to_label" type="Label" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "HOW TO PLAY"
+label_settings = SubResource("LabelSettings_s7ecl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="infomation_label" type="Label" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The aim of the game is to collect as many EGGS as possible
+before  your Goblins meet their inevitable fall to the DRAGONS.
+
+This game is a balance between resource spending and collecting.
+Spend eggs to increase your collection rate or defences.
+
+EGGS come in 3 colours YELLOW, BLUE and RED,
+giving diffrent amounts of points per colour.
+This means that every start and play through has the potential
+to be different depending on the luck of your collectors."
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu_button" type="TextureButton" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="main_menu_button_label" type="Label" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer/main_menu_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN   MENU"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit_game_button" type="TextureButton" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="exit_button_label" type="Label" parent="Control/Menu_How_To/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT    GAME"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_Settings" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -112.5
+offset_right = 189.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_c7iyn")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Menu_Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wujna")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu_Settings/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu_Settings/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="settings_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = ExtResource("3_2tmv8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="infomation_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "COMMING SOON"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="main_menu_button" type="TextureButton" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="main_menu_button_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/main_menu_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN   MENU"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit_game_button" type="TextureButton" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="exit_button_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT    GAME"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_Home" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -112.5
+offset_right = 189.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_dysux")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Menu_Home"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wujna")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu_Home/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="spacer1" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="main_menu_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "THE DRAGONS CLUTCH"
+label_settings = ExtResource("3_2tmv8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spacer2" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="play_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="play_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/play_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="settings_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="settings_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/settings_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="how_to_play_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="how_to_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/how_to_play_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ABOUT   GAME"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="credits_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/credits_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit_game_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_rjpyo")
+
+[node name="exit_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT    GAME"
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_screen_spawner" parent="." instance=ExtResource("2_vi576")]
+position = Vector2(-27, -1)

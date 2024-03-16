@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cslmrudxnxwxm"]
+
+[ext_resource type="FontFile" uid="uid://djpkahy75tclj" path="res://Assets/fonts/Final-Fantasy.ttf" id="1_kcnyr"]
+
+[resource]
+font = ExtResource("1_kcnyr")
+font_size = 8
+shadow_color = Color(0.305882, 0.0941176, 0.486275, 0.831373)

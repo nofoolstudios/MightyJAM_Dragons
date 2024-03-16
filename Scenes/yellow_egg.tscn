@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://brguvm8mai2ho"]
+
+[ext_resource type="PackedScene" uid="uid://dsuq0qfmuhiv8" path="res://Scenes/egg.tscn" id="1_r6e6j"]
+[ext_resource type="Texture2D" uid="uid://dwvaojtk3mmim" path="res://Assets/yellow_egg.png" id="2_y2idt"]
+
+[node name="yellow_egg" instance=ExtResource("1_r6e6j")]
+texture = ExtResource("2_y2idt")
+points = 2

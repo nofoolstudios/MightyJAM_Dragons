@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://c17gc3srs5kqb"]
+
+[ext_resource type="Script" path="res://Scenes/user_controls.gd" id="1_qeljt"]
+[ext_resource type="Texture2D" uid="uid://mtowheavlgcn" path="res://Assets/egg_counter.png" id="2_pyn3d"]
+[ext_resource type="FontFile" uid="uid://djpkahy75tclj" path="res://Assets/fonts/Final-Fantasy.ttf" id="3_m6e6a"]
+[ext_resource type="Texture2D" uid="uid://b8ni37hmongyx" path="res://Assets/collector_button.png" id="4_7vigj"]
+[ext_resource type="Texture2D" uid="uid://dujvjng1hvolq" path="res://Assets/protector_button.png" id="5_drfi5"]
+[ext_resource type="PackedScene" uid="uid://w56utktu77a3" path="res://Scenes/ui.tscn" id="6_tnhgs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wf7tb"]
+font = ExtResource("3_m6e6a")
+font_size = 8
+shadow_color = Color(0.305882, 0.0941176, 0.486275, 0.831373)
+
+[node name="user_controls" type="CanvasLayer"]
+script = ExtResource("1_qeljt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 261)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureButton3" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("2_pyn3d")
+
+[node name="egg_counter_label" type="Label" parent="Control/VBoxContainer/HBoxContainer/TextureButton3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "000"
+label_settings = SubResource("LabelSettings_wf7tb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+
+[node name="collector_purchase_button" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("4_7vigj")
+
+[node name="protector_purchase_button" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("5_drfi5")
+
+[node name="UI" parent="Control" instance=ExtResource("6_tnhgs")]
+layout_mode = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/collector_purchase_button" to="." method="_on_collector_purchase_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/protector_purchase_button" to="." method="_on_protector_purchase_button_pressed"]

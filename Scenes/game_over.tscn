@@ -1,0 +1,204 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5jjhkrs6ra0o"]
+
+[ext_resource type="Texture2D" uid="uid://b0vv1xpo4elgp" path="res://Assets/main_menu_background.png" id="1_v3nv0"]
+[ext_resource type="Script" path="res://Scenes/game_over.gd" id="2_8a0ti"]
+[ext_resource type="Texture2D" uid="uid://diq4otv27kgne" path="res://Assets/ui_panel.png" id="3_amw1f"]
+[ext_resource type="LabelSettings" uid="uid://c2tcbao51vfdi" path="res://Assets/fonts/main_menu_titles.tres" id="4_p5qnp"]
+[ext_resource type="LabelSettings" uid="uid://cslmrudxnxwxm" path="res://Assets/fonts/label_theme.tres" id="5_boi12"]
+[ext_resource type="FontFile" uid="uid://djpkahy75tclj" path="res://Assets/fonts/Final-Fantasy.ttf" id="5_xttct"]
+[ext_resource type="Texture2D" uid="uid://dj5gd3e00rk7b" path="res://Scenes/button_basic.png" id="6_mxj1w"]
+[ext_resource type="PackedScene" uid="uid://bv65unlrnfjw2" path="res://Scenes/main_screen_spawner.tscn" id="9_newfg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wh56"]
+font = ExtResource("5_xttct")
+shadow_color = Color(0.305882, 0.0941176, 0.486275, 0.831373)
+
+[node name="main_menu" type="Node2D"]
+process_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_v3nv0")
+
+[node name="dragons" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 318.0
+offset_top = 179.0
+offset_right = 318.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_8a0ti")
+
+[node name="Menu_Home" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -112.5
+offset_right = 189.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Menu_Home"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_amw1f")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu_Home/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="spacer1" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="main_menu_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "THE DRAGONS CLUTCH"
+label_settings = ExtResource("4_p5qnp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spacer2" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="game_over_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_5wh56")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spacer4" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="you_collected_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "YOU COLLECTED -"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="amount_collected_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="eggs_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " EGGS"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="spacer3" type="AspectRatioContainer" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="replay_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_mxj1w")
+
+[node name="replay_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/replay_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "REPLAY"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_mxj1w")
+
+[node name="menu_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/main_menu_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN  MENU"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit_game_button" type="TextureButton" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_mxj1w")
+
+[node name="exit_button_label" type="Label" parent="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT  GAME"
+label_settings = ExtResource("5_boi12")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_screen_spawner" parent="." instance=ExtResource("9_newfg")]
+position = Vector2(-27, -1)
+
+[connection signal="pressed" from="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/replay_button" to="Control" method="_on_replay_button_pressed"]
+[connection signal="pressed" from="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/main_menu_button" to="Control" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/Menu_Home/NinePatchRect/MarginContainer/VBoxContainer/exit_game_button" to="Control" method="_on_exit_game_button_pressed"]
