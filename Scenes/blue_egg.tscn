@@ -5,4 +5,4 @@
 
 [node name="blue_egg" instance=ExtResource("1_5n7bw")]
 texture = ExtResource("2_8cnb8")
-points = 4
+points = 2

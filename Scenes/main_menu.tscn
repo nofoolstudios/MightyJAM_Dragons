@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsu6au3d5k5nl"]
+[gd_scene load_steps=14 format=3 uid="uid://bsu6au3d5k5nl"]
 
 [ext_resource type="Texture2D" uid="uid://b0vv1xpo4elgp" path="res://Assets/main_menu_background.png" id="1_kqsmg"]
 [ext_resource type="Script" path="res://Scenes/Menu_Credits.gd" id="2_ds25v"]
@@ -10,6 +10,8 @@
 [ext_resource type="LabelSettings" uid="uid://cslmrudxnxwxm" path="res://Assets/fonts/label_theme.tres" id="5_1qkdh"]
 [ext_resource type="Script" path="res://Scenes/Menu_Settings.gd" id="7_c7iyn"]
 [ext_resource type="FontFile" uid="uid://buybdhyeluu7y" path="res://Assets/fonts/VisualFantasyDEMO-Regular.otf" id="8_uues2"]
+[ext_resource type="Script" path="res://Scenes/background_music.gd" id="9_otp0t"]
+[ext_resource type="Script" path="res://Scenes/soundfx_button.gd" id="10_5brwg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s7ecl"]
 font = ExtResource("8_uues2")
@@ -307,15 +309,40 @@ label_settings = ExtResource("3_2tmv8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="infomation_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "COMMING SOON"
+size_flags_horizontal = 4
+
+[node name="background_music_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "BACK GROUND MUSIC : "
 label_settings = ExtResource("5_1qkdh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CheckButton" type="CheckButton" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+script = ExtResource("9_otp0t")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="sound_fx_label" type="Label" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "SOUND EFFECTS : "
+label_settings = ExtResource("5_1qkdh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+button_pressed = true
+script = ExtResource("10_5brwg")
+
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="main_menu_button" type="TextureButton" parent="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer"]
@@ -525,3 +552,6 @@ vertical_alignment = 1
 
 [node name="main_screen_spawner" parent="." instance=ExtResource("2_vi576")]
 position = Vector2(-27, -1)
+
+[connection signal="toggled" from="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/CheckButton" to="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="Control/Menu_Settings/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/CheckButton" to="Control/Menu_Credits" method="_on_check_button_toggled"]

@@ -17,9 +17,9 @@ func _on_area_entered(area):
 
 func generate_random_egg():
 	var number = randi_range(1, 100)
-	if number < 65:
+	if number < 60:
 		looted_egg = YELLOW_EGG
-	elif number > 95:
+	elif number > 90:
 		looted_egg = RED_EGG
 	else:
 		looted_egg = BLUE_EGG

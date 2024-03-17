@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://chgj6eb6pnpbj"]
+[gd_scene load_steps=6 format=3 uid="uid://chgj6eb6pnpbj"]
 
 [ext_resource type="Texture2D" uid="uid://b057ob56tnni6" path="res://Assets/goblin_base.png" id="1_76ci8"]
 [ext_resource type="Script" path="res://base_goblin.gd" id="1_eedlp"]
 [ext_resource type="PackedScene" uid="uid://bdjhg47y7alce" path="res://Scenes/hurt_box.tscn" id="3_7hgj6"]
+[ext_resource type="PackedScene" uid="uid://lwbne1d2x4vb" path="res://Scenes/damage_animation_player.tscn" id="4_qeu21"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ye4ld"]
 
@@ -18,3 +19,5 @@ texture = ExtResource("1_76ci8")
 hframes = 3
 
 [node name="hurt_box" parent="." instance=ExtResource("3_7hgj6")]
+
+[node name="DamageAnimationPlayer" parent="." instance=ExtResource("4_qeu21")]

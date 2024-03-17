@@ -10,7 +10,8 @@ const LEFT = -1
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var egg_container: PackedScene
 @export var move_speed = 50
-@export var interaction_speed = 2.0
+@export var interaction_speed = 1.0
+@onready var hit_animation_player: AnimationPlayer = $hit_animation_player
 
 
 var is_interacting = false

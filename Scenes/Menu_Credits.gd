@@ -17,3 +17,8 @@ func _on_main_menu_button_pressed():
 
 func _on_exit_game_button_pressed():
 	get_tree().quit()
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(2, !toggled_on)
+	Events.sound_fx_toggle.emit(toggled_on)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b057f064dtw4w"]
+
+[ext_resource type="AudioStream" uid="uid://bj3bkrp3y0xmr" path="res://Assets/sounds/The Vile Grove.ogg" id="1_vnwq6"]
+[ext_resource type="Script" path="res://Scenes/background_audio.gd" id="2_0a6fy"]
+
+[node name="background_audio" type="AudioStreamPlayer"]
+stream = ExtResource("1_vnwq6")
+volume_db = -15.0
+autoplay = true
+bus = &"background_audio"
+script = ExtResource("2_0a6fy")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

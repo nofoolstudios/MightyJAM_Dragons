@@ -16,7 +16,7 @@ const PEBBLE = preload("res://Scenes/pebble.tscn")
 @onready var building_detection: Area2D = $building_detection
 @onready var no_build_zone: Area2D = $no_build_zone
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var sound_fx: AudioStreamPlayer = $sound_fx
 @export var is_placed: = false
 
 var pebble_damage = 1.0
@@ -27,7 +27,7 @@ var is_in_valid_build_area = false
 var is_not_colliding_with_other_protectors = true
 var is_placeable = false
 var is_colour_reset: = false
-
+var is_world_set_up = false
 var has_just_turned = true
 
 var turn_timer_min = 2.0
@@ -48,9 +48,11 @@ func _ready() -> void:
 	collision_shape_2d.disabled = true
 	connect_required_signals()
 	
-func _process(delta: float) -> void:
-	if is_placed:
+func _physics_process(delta: float) -> void:
+	if is_placed and not is_world_set_up:
 		collision_shape_2d.disabled = false
+		no_build_zone_collision.disabled = false
+		is_world_set_up = true
 	
 	if is_placed and !is_colour_reset:
 		modulate = Color.WHITE
@@ -97,7 +99,7 @@ func _process(delta: float) -> void:
 				modulate = Color.GREEN
 				is_placeable = true
 				
-			if !is_in_valid_build_area or !is_not_colliding_with_other_protectors:
+			if !is_in_valid_build_area:
 				modulate = Color.RED
 				is_placeable = false
 				
@@ -105,6 +107,7 @@ func _process(delta: float) -> void:
 				if Input.is_action_just_pressed("place_tower"):
 					position = position
 					no_build_zone_collision.disabled = false
+					sound_fx.playing = true
 					is_placed = true
 					Events.building_place.emit()
 		else:
@@ -146,8 +149,8 @@ func shoot():
 
 
 func connect_required_signals():
-	building_detection.area_entered.connect(_on_building_detection_area_entered)
-	building_detection.area_exited.connect(_on_building_detection_area_exited)
+	#building_detection.area_entered.connect(_on_building_detection_area_entered)
+	#building_detection.area_exited.connect(_on_building_detection_area_exited)
 	vision_box.area_entered.connect(_on_vision_area_entered)
 	vision_box.area_exited.connect(_on_vision_area_exited)
 	reload_timer.timeout.connect(_on_reload_timer_timeout)
@@ -160,15 +163,15 @@ func _on_turn_timer_timeout():
 	has_just_turned = false
 	is_turn_timer_set = false
 
-func _on_building_detection_area_entered(area):
-	if area.is_in_group("no_build_zone"):
-		is_not_colliding_with_other_protectors = false
-		
+#func _on_building_detection_area_entered(area):
+	#if area.is_in_group("no_build_zone"):
+		#is_not_colliding_with_other_protectors = false
+		#
 
-func _on_building_detection_area_exited(area):
-	if area.is_in_group("no_build_zone"):
-		is_not_colliding_with_other_protectors = true
-
+#func _on_building_detection_area_exited(area):
+	#if area.is_in_group("no_build_zone"):
+		#is_not_colliding_with_other_protectors = true
+#
 func _on_placement_detection_area_entered(area):
 	if area.is_in_group("valid_placement_zone"):
 		is_in_valid_build_area = true

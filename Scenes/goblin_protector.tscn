@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ytmsdck02hmb"]
+[gd_scene load_steps=14 format=3 uid="uid://ytmsdck02hmb"]
 
 [ext_resource type="PackedScene" uid="uid://chgj6eb6pnpbj" path="res://Scenes/base_goblin.tscn" id="1_242ap"]
 [ext_resource type="Texture2D" uid="uid://cm3kn8esvvrgq" path="res://Assets/goblin_protector.png" id="2_dub53"]
 [ext_resource type="Script" path="res://Scenes/goblin_protector.gd" id="2_q3g04"]
 [ext_resource type="Texture2D" uid="uid://dsw7lrnxwsgor" path="res://Assets/platform.png" id="3_53s8w"]
+[ext_resource type="AudioStream" uid="uid://dgwpwsa5jpkk" path="res://Assets/sounds/build.wav" id="5_mcs8y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xe2a7"]
 size = Vector2(21.8647, 37.6746)
@@ -74,6 +75,7 @@ _data = {
 [node name="goblin_protector" instance=ExtResource("1_242ap")]
 script = ExtResource("2_q3g04")
 is_placed = false
+type = "protector"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-0.5, -15)
@@ -99,7 +101,7 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="vision_box" index="0"]
 position = Vector2(0, -49)
-polygon = PackedVector2Array(0, -9, 74, -80, 93, -51, 103, -18, 95, 23, 73, 51, 0, 6)
+polygon = PackedVector2Array(0, -9, 74, -80, 93, -51, 103, -18, 95, 23, 79.5, 85, 31.5, 85, 0, 6)
 
 [node name="placement_detection" type="Area2D" parent="." index="5"]
 position = Vector2(0.5, 27)
@@ -145,3 +147,8 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_wjlbr")
 }
+
+[node name="sound_fx" type="AudioStreamPlayer" parent="." index="12"]
+stream = ExtResource("5_mcs8y")
+volume_db = -8.0
+bus = &"SFX"

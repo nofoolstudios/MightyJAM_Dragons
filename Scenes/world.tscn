@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvgofox8cwn4s"]
+[gd_scene load_steps=8 format=3 uid="uid://cvgofox8cwn4s"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_4hi6q"]
 [ext_resource type="PackedScene" uid="uid://djbvlu58w4t0f" path="res://Scenes/floor.tscn" id="1_ikk1n"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cyi7bkw1l8wpf" path="res://Scenes/placement_area.tscn" id="3_dqfu7"]
 [ext_resource type="PackedScene" uid="uid://dsd0iuyjqly4x" path="res://Scenes/cart.tscn" id="4_fim31"]
 [ext_resource type="PackedScene" uid="uid://ytmsdck02hmb" path="res://Scenes/goblin_protector.tscn" id="6_r10m5"]
+[ext_resource type="AudioStream" uid="uid://bk2hffouoywd5" path="res://Assets/sounds/mixkit-simple-game-countdown-921.wav" id="7_r60cx"]
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -49,14 +50,30 @@ position = Vector2(-24, 244)
 [node name="sp2" type="Marker2D" parent="goblin_spawn_points"]
 position = Vector2(99, 244)
 
+[node name="whelps" type="Node2D" parent="."]
+
 [node name="goblin_protectors" type="Node2D" parent="."]
 
 [node name="goblin_protector" parent="goblin_protectors" instance=ExtResource("6_r10m5")]
-position = Vector2(303, 210)
+position = Vector2(207, 210)
+is_placed = true
+
+[node name="goblin_protector2" parent="goblin_protectors" instance=ExtResource("6_r10m5")]
+position = Vector2(416, 210)
 is_placed = true
 
 [node name="goblin_collectors" type="Node2D" parent="."]
 
 [node name="wave_timer" type="Timer" parent="."]
+wait_time = 40.0
+autostart = true
+
+[node name="count_down_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="sound_fx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_r60cx")
+bus = &"SFX"
 
 [editable path="goblin_protectors/goblin_protector"]
+[editable path="goblin_protectors/goblin_protector2"]

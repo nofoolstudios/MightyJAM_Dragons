@@ -2,6 +2,8 @@ extends Area2D
 
 var total_eggs = 3
 
+const POP_UP_EGG = preload("res://Scenes/pop_up_egg.tscn")
+
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	Events.purchase_collector.connect(_on_purchase_collector)
@@ -36,5 +38,11 @@ func _on_area_entered(area):
 			var new_egg = area.get_parent().egg_container.instantiate()
 			area.get_parent().egg_container = null
 			total_eggs += new_egg.points
+			make_pop_up(new_egg.points)
 			Events.update_egg_ui.emit(total_eggs)
-			print(total_eggs)
+
+func make_pop_up(new_points):
+	var new_pop_up = POP_UP_EGG.instantiate()
+	new_pop_up.amount = new_points
+	new_pop_up.position = position
+	add_child(new_pop_up)

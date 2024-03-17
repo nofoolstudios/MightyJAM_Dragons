@@ -15,6 +15,7 @@ const BLUE_WHELP = preload("res://Assets/blue_whelp.png")
 @onready var relocation_timer: Timer = $relocation_timer
 @onready var hurt_box: Area2D = $hurt_box
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var damage_animation_player: AnimationPlayer = $DamageAnimationPlayer
 
 
 var is_on_main_screen = false
@@ -22,8 +23,9 @@ var is_on_main_screen = false
 var window_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var window_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 
-var is_targetable: = false
+var is_targetable: = true
 var health = 3
+
 
 var fire_damage = 1.0
 var fire_rate = 2.0
@@ -101,14 +103,18 @@ func _process(delta: float) -> void:
 
 	
 func select_enemy():
-	var targets_health_array = []
+	var targets_type_array = []
 	if current_targets.size() != 0:
 		for goblins in current_targets:
-			targets_health_array.append(goblins.health)
-		var minimum_health_target = targets_health_array.min()
-		var enemy_index = current_targets.find(minimum_health_target)
-		var check_enemy = current_targets[enemy_index]
-		enemy = check_enemy
+			targets_type_array.append(goblins.type)
+		var enemy_index = current_targets.find("protector")
+		if enemy_index != -1:
+			var check_enemy = current_targets[enemy_index]
+			enemy = check_enemy
+		else:
+			enemy_index = current_targets.find("collector")
+			var check_enemy = current_targets[enemy_index]
+			enemy = check_enemy
 			
 func turn():
 	look_at(enemy.position)
@@ -166,7 +172,7 @@ func _on_reload_timer_timeout():
 
 func _on_spawn_timer_timeout():
 	current_state = states.THINKING
-	is_targetable = true
+	#is_targetable = true
 	direction.x = 0
 
 func _on_relocation_timer_timeout():
@@ -175,8 +181,8 @@ func _on_relocation_timer_timeout():
 
 func _on_hurt_box_area_entered(area):
 	if area.target == self:
-		print("hit")
 		health -= area.damage
+		damage_animation_player.play("damage_taken")
 		area.queue_free()
 	if health > 0:
 		return

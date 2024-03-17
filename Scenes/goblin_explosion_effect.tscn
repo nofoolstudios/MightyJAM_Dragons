@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyhrx72xidkay"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_t0dhw"]
+
+[sub_resource type="Curve" id="Curve_65d4p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.915663, 0.135392), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6uqj4"]
+offsets = PackedFloat32Array(0.200658, 0.5625, 0.901316, 1)
+colors = PackedColorArray(0.356863, 0.65098, 0.458824, 1, 0.419608, 0.788235, 0.423529, 1, 0.670588, 0.866667, 0.392157, 1, 0.670588, 0.866667, 0.392157, 0)
+
+[sub_resource type="Gradient" id="Gradient_ytyeh"]
+offsets = PackedFloat32Array(0.00657895, 0.707237, 0.960526)
+colors = PackedColorArray(0.639216, 0.156863, 0.345098, 1, 0.639216, 0.156863, 0.345098, 1, 1, 0, 0, 0)
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_t0dhw")
+
+[node name="goblin_bits_particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 65
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 95.0
+scale_amount_min = 4.0
+scale_amount_max = 9.0
+scale_amount_curve = SubResource("Curve_65d4p")
+color_ramp = SubResource("Gradient_6uqj4")
+
+[node name="goblin_blood_particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 35
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 95.0
+scale_amount_min = 4.0
+scale_amount_max = 9.0
+scale_amount_curve = SubResource("Curve_65d4p")
+color_ramp = SubResource("Gradient_ytyeh")
+
+[node name="kill_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]
