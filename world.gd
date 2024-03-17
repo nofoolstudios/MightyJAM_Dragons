@@ -42,9 +42,9 @@ func _process(delta: float) -> void:
 		for goblins in all_goblin_protectors:
 			all_goblins.append(goblins)
 	
-	if wave == 11:
+	if wave == 10:
 		var whelps_array = whelps.get_children()
-		if whelps_array == 0:
+		if whelps_array.is_empty():
 			Events.record_final_wave_count.emit(wave)
 			Events.record_final_score.emit()
 			
